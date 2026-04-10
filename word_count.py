@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
+import os
 import re
 import sys
-from collections import Counter
 
 
-def count_words(filepath):
+def extract_words(filepath):
     with open(filepath, encoding="utf-8") as f:
         text = f.read()
 
@@ -14,23 +14,37 @@ def count_words(filepath):
     # Extract words (letters and apostrophes for contractions/possessives)
     words = re.findall(r"[A-Za-z']+", text)
 
-    # Normalize to lowercase for unique word counting
-    words_lower = [w.lower().strip("'") for w in words]
+    # Normalize to lowercase and strip leading/trailing apostrophes
+    return [w.lower().strip("'") for w in words]
 
-    total = len(words_lower)
-    unique = len(set(words_lower))
 
-    return total, unique
+def resolve_paths(args):
+    paths = []
+    for arg in args:
+        if os.path.isdir(arg):
+            for fname in sorted(os.listdir(arg)):
+                if fname.endswith(".txt"):
+                    paths.append(os.path.join(arg, fname))
+        else:
+            paths.append(arg)
+    return paths
 
 
 def main():
-    if len(sys.argv) != 2:
-        print("Usage: python3 word_count.py <file.txt>")
+    if len(sys.argv) < 2:
+        print("Usage: python3 word_count.py <file.txt> [file2.txt ...] [or directory/]")
         sys.exit(1)
 
-    filepath = sys.argv[1]
-    total, unique = count_words(filepath)
+    paths = resolve_paths(sys.argv[1:])
 
+    all_words = []
+    for path in paths:
+        all_words.extend(extract_words(path))
+
+    total = len(all_words)
+    unique = len(set(all_words))
+
+    print(f"Files:        {len(paths)}")
     print(f"Total words:  {total:,}")
     print(f"Unique words: {unique:,}")
 
