@@ -57,11 +57,11 @@ def main():
     total_chars = sum(len(p) for p in all_patterns)
     unique_chars = sum(len(p) for p in counts)
 
-    print(f"Files:              {len(paths)}")
-    print(f"Total patterns:     {total:,}")
-    print(f"Unique patterns:    {unique:,}")
-    print(f"Total chars:        {total_chars:,}")
-    print(f"Unique chars:       {unique_chars:,}")
+    print(f"Files:                  {len(paths)}")
+    print(f"Total patterns:         {total:,}")
+    print(f"Unique patterns:        {unique:,}")
+    print(f"Total pattern chars:    {total_chars:,}")
+    print(f"Unique pattern chars:   {unique_chars:,}")
     print()
     print("Top 30 patterns (repr shows whitespace):")
     for pattern, count in counts.most_common(30):

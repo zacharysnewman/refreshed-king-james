@@ -50,8 +50,8 @@ def main():
     print(f"Files:              {len(paths)}")
     print(f"Total words:        {total:,}")
     print(f"Unique words:       {unique:,}")
-    print(f"Total chars:        {total_chars:,}")
-    print(f"Unique chars:       {unique_chars:,}")
+    print(f"Total word chars:   {total_chars:,}")
+    print(f"Unique word chars:  {unique_chars:,}")
 
 
 if __name__ == "__main__":
