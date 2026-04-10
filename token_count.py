@@ -53,10 +53,14 @@ def main():
     total = len(all_tokens)
     counts = Counter(all_tokens)
     unique = len(counts)
+    total_chars = sum(len(t) for t in all_tokens)
+    unique_chars = sum(len(t) for t in counts)
 
-    print(f"Files:         {len(paths)}")
-    print(f"Total tokens:  {total:,}")
-    print(f"Unique tokens: {unique:,}")
+    print(f"Files:              {len(paths)}")
+    print(f"Total tokens:       {total:,}")
+    print(f"Unique tokens:      {unique:,}")
+    print(f"Total chars:        {total_chars:,}")
+    print(f"Unique chars:       {unique_chars:,}")
     print()
     print("Top 30 tokens (repr shows whitespace):")
     for token, count in counts.most_common(30):

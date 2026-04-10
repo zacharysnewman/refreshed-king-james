@@ -42,11 +42,16 @@ def main():
         all_words.extend(extract_words(path))
 
     total = len(all_words)
-    unique = len(set(all_words))
+    unique_words = set(all_words)
+    unique = len(unique_words)
+    total_chars = sum(len(w) for w in all_words)
+    unique_chars = sum(len(w) for w in unique_words)
 
-    print(f"Files:        {len(paths)}")
-    print(f"Total words:  {total:,}")
-    print(f"Unique words: {unique:,}")
+    print(f"Files:              {len(paths)}")
+    print(f"Total words:        {total:,}")
+    print(f"Unique words:       {unique:,}")
+    print(f"Total chars:        {total_chars:,}")
+    print(f"Unique chars:       {unique_chars:,}")
 
 
 if __name__ == "__main__":
