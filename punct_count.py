@@ -14,7 +14,7 @@ def extract_punct_patterns(filepath):
 
     # Split on word tokens (same pattern as word_count.py) — what remains
     # between tokens is purely punctuation and/or whitespace.
-    segments = re.split(r"[A-Za-z']+", text)
+    segments = re.split(r"[A-Za-z']+|\d+", text)
 
     patterns = []
     for seg in segments:
