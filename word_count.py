@@ -11,8 +11,8 @@ def extract_words(filepath):
     # Remove verse references like [1:1], [10:25], [3:4], etc.
     text = re.sub(r'\[\d+:\d+\]', '', text)
 
-    # Extract words (letters and apostrophes for contractions/possessives)
-    words = re.findall(r"[A-Za-z']+", text)
+    # Extract words (letters, apostrophes for contractions/possessives) and numbers
+    words = re.findall(r"[A-Za-z']+|\d+", text)
 
     # Normalize to lowercase and strip leading/trailing apostrophes
     return [w.lower().strip("'") for w in words]
